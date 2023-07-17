@@ -3,7 +3,8 @@ import { useState } from "react";
 function App() {
   const [keyword, setKeyword] = useState("");
   const [image, setImage] = useState("");
-  function clickHandler() {
+  function clickHandler(e) {
+    e.preventDefault();
     window.electron.scrape(keyword);
     window.electron.showScrapedData((e, data) => {
       setImage(data);
