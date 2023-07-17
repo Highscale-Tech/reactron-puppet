@@ -1,6 +1,5 @@
 // Module to control the application lifecycle and the native browser window.
 const { app, BrowserWindow, protocol, ipcMain } = require("electron");
-const fs = require("fs");
 const path = require("path");
 const { scraper } = require("./scraper");
 
@@ -61,7 +60,7 @@ function setupLocalFilesNormalizerProxy() {
 app.whenReady().then(() => {
   createWindow();
   ipcMain.on("scrape", (e, data) => {
-    const image = scraper(data).then((data) => {
+    scraper(data).then((data) => {
       e.sender.send("scrape:reply", data);
     });
   });
