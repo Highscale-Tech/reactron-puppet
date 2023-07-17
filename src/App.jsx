@@ -2,10 +2,8 @@ import "./App.css";
 import { useState } from "react";
 function App() {
   const [keyword, setKeyword] = useState("");
-  const [isImageLoading, setIsImageLoading] = useState(false);
   const [image, setImage] = useState("");
   function clickHandler() {
-    setIsImageLoading(true);
     window.electron.scrape(keyword);
     window.electron.showScrapedData((e, data) => {
       setImage(data);
